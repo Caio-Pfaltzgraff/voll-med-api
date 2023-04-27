@@ -41,7 +41,7 @@ public class MedicoController {
         medico.atualizarInformacoes(dados); //não precisa fazer mais nada pois a anotação @Transactional já faz o update
     }
 
-    @DeleteMapping("/{id}") //diz ao spring que é um parâmetro dinâmico
+    @DeleteMapping("/{id}") //diz ao Spring que é um parâmetro dinâmico
     @Transactional
     public void excluir(@PathVariable Long id) { //@PathVariable diz que é uma variavel da url, um parametro dinamico
 //        repository.deleteById(id);
