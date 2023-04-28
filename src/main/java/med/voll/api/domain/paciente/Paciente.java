@@ -1,45 +1,42 @@
-package med.voll.api.model;
+package med.voll.api.domain.paciente;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api.dto.DadosAtualizacaoMedico;
-import med.voll.api.dto.DadosCadastroMedico;
+import med.voll.api.domain.endereco.Endereco;
+import med.voll.api.domain.paciente.DadosAtualizacaoPaciente;
+import med.voll.api.domain.paciente.DadosCadastroPaciente;
 
-@Table(name = "medicos")
-@Entity(name = "Medico")
+@Entity(name = "Paciente")
+@Table(name = "pacientes")
 @Getter
-@NoArgsConstructor //gerar o construtor vazio
-@AllArgsConstructor //gerar o construtor com todos os atributos
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Medico {
+public class Paciente {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String email;
     private String telefone;
-    private String crm;
-    @Enumerated(EnumType.STRING)
-    private Especialidade especialidade;
+    private String cpf;
     @Embedded
     private Endereco endereco;
     private Boolean ativo;
-    //caso a migration de erro https://cursos.alura.com.br/course/spring-boot-3-desenvolva-api-rest-java/task/121056
 
-    public Medico(DadosCadastroMedico dados) {
+    public Paciente(DadosCadastroPaciente dados) {
         this.ativo = true;
         this.nome = dados.nome();
         this.email = dados.email();
         this.telefone = dados.telefone();
-        this.crm = dados.crm();
-        this.especialidade = dados.especialidade();
+        this.cpf = dados.cpf();
         this.endereco = new Endereco(dados.endereco());
     }
 
-    public void atualizarInformacoes(DadosAtualizacaoMedico dados) {
+    public void atualizarInformacoes(DadosAtualizacaoPaciente dados) {
         if(dados.nome() != null) {
             this.nome = dados.nome();
         }
