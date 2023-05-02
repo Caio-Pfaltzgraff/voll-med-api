@@ -27,4 +27,12 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
                 limit 1
                 """) //:especialidade, diz ao jpql que está acessando o nome do parâmetro
     Medico escolherMedicoAleatorioLivreNaData(Especialidade especialidade, LocalDateTime data);
+
+    @Query("""
+            select m.ativo
+            from Medico m
+            where
+            m.id = :idMedico
+            """)
+    Boolean findAtivoById(Long idMedico);
 }
