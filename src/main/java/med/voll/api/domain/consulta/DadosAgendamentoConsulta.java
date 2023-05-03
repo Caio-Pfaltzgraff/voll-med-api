@@ -13,7 +13,7 @@ public record DadosAgendamentoConsulta(
         Long idPaciente,
 
         @NotNull
-        @Future //diz que a data tem que ser no futuro, pois não pode agendar para o passado
+        @Future
         LocalDateTime data,
 
         Especialidade especialidade) {

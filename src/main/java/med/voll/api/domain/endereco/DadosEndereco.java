@@ -9,7 +9,7 @@ public record DadosEndereco(
         @NotBlank
         String bairro,
         @NotBlank
-        @Pattern(regexp = "\\d{8}") //diz que são 8 digitos que compõe o cep
+        @Pattern(regexp = "\\d{8}")
         String cep,
         @NotBlank
         String cidade,

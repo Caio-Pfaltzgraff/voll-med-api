@@ -26,8 +26,8 @@ public class MedicoController {
     private MedicoRepository repository;
 
     @PostMapping
-    @Transactional // diz que precisa ter uma transação ativa com o banco de dados
-    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroMedico dados, UriComponentsBuilder uriBuilder) { //@RequestBody serve para receber o corpo da requisição, ou seja o conteúdo. @Valid o Bean validation irá validar os dados
+    @Transactional
+    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroMedico dados, UriComponentsBuilder uriBuilder) {
         var medico = new Medico(dados);
         repository.save(medico);
 
@@ -38,28 +38,26 @@ public class MedicoController {
 
     @GetMapping
     public ResponseEntity<Page<DadosListagemMedico>> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao) {
-        //paginação é quando tem uma lista com muitos dados e exibe por exemplo 10 medicos por página
-        var page = repository.findAllByAtivoTrue(paginacao).map(DadosListagemMedico::new); //existe um padrão de nomenclatura, que se criar um método com determinado padrão de nomenclatura ele consegue gerar a query da maneira que desejamos, findAllByAtivoTrue irá trazer pelo select todos os médicos ativos
-        return ResponseEntity.ok(page); //ResponseEntity serve para servir o status code correto
+        var page = repository.findAllByAtivoTrue(paginacao).map(DadosListagemMedico::new);
+        return ResponseEntity.ok(page);
     }
 
     @PutMapping
     @Transactional
     public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados) {
-        var medico = repository.getReferenceById(dados.id());//busca no banco pelo id
-        medico.atualizarInformacoes(dados); //não precisa fazer mais nada pois a anotação @Transactional já faz o update
+        var medico = repository.getReferenceById(dados.id());
+        medico.atualizarInformacoes(dados);
 
         return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
     }
 
-    @DeleteMapping("/{id}") //diz ao Spring que é um parâmetro dinâmico
+    @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity excluir(@PathVariable Long id) { //@PathVariable diz que é uma variavel da url, um parametro dinamico
-//        repository.deleteById(id);
+    public ResponseEntity excluir(@PathVariable Long id) {
         var medico = repository.getReferenceById(id);
         medico.excluir();
 
-        return ResponseEntity.noContent().build(); //para dar a resposta como 204, status ok mas sem resposta
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}")
@@ -67,7 +65,5 @@ public class MedicoController {
         var medico = repository.getReferenceById(id);
         return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
     }
-
-
 
 }

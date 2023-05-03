@@ -15,7 +15,7 @@ import java.time.ZoneOffset;
 @Service
 public class TokenService {
 
-    @Value("{api.security.token.secret}") //atributo para ler do aplication.properties acessando a var. de ambiente
+    @Value("{api.security.token.secret}")
     private String secret;
 
     public String gerarToken(Usuario usuario) {

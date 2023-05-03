@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class SpringDocConfigurations {//para gerar o cabeçalho que coloca o token, na documentação
+public class SpringDocConfigurations {
 
     @Bean
     public OpenAPI customOpenAPI() {

@@ -14,15 +14,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-@Configuration //diz ao spring que vai ser uma classe de configuração e ele irá carregar esta classe no projeto
-@EnableWebSecurity //diz que vamos personalizar as configurações de segurança
+@Configuration
+@EnableWebSecurity
 public class SecurityConfigurations {
 
     @Autowired
     private SecurityFilter securityFilter;
 
-    @Bean //serve para exportar o retorno deste método, ou seja, devolver um objeto para o spring, ou um objeto que eu possa injetar em algum controller ou lugar
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {//passando para stateless
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeHttpRequests()

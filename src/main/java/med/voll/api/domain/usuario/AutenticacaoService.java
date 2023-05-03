@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service //diz que a classse é um componente e que ela executará algum serviço, no caso, o de autenticação
-public class AutenticacaoService implements UserDetailsService { //implementa a interface para dizer que vai ser um serviço de autenticação
+@Service
+public class AutenticacaoService implements UserDetailsService {
 
     @Autowired
     private UsuarioRepository repository;

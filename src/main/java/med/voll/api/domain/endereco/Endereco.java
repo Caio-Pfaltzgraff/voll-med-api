@@ -8,8 +8,8 @@ import med.voll.api.domain.endereco.DadosEndereco;
 
 @Embeddable
 @Getter
-@NoArgsConstructor //gerar o construtor vazio
-@AllArgsConstructor //gerar o construtor com todos os atributos
+@NoArgsConstructor
+@AllArgsConstructor
 public class Endereco {
 
     private String logradouro;

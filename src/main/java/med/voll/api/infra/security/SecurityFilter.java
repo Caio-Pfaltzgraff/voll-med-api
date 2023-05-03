@@ -13,7 +13,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-@Component //diz que não é um serviço,repository,nem classe de tratamento de erros, nem classe de configuração. Diz que é um componente genérico, para carregar automáticamente
+@Component
 public class SecurityFilter extends OncePerRequestFilter {
 
     @Autowired
@@ -36,7 +36,7 @@ public class SecurityFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(authentication);// força a autenticação, garante ao spring que o usuario está logado
         }
 
-        filterChain.doFilter(request, response); //chama o próximo filtro
+        filterChain.doFilter(request, response);
     }
 
     private String recuperarToken(HttpServletRequest request) {

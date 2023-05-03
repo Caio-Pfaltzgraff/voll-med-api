@@ -13,7 +13,6 @@ public class ValidadorMedicoAtivo implements ValidadorAgendamentoDeConsulta {
     private MedicoRepository repository;
 
     public void validar(DadosAgendamentoConsulta dados) {
-        //escolha do médico opcional
         if (dados.idMedico() == null) {
             return;
         }

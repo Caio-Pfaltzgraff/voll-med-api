@@ -10,8 +10,8 @@ import med.voll.api.domain.endereco.Endereco;
 @Table(name = "medicos")
 @Entity(name = "Medico")
 @Getter
-@NoArgsConstructor //gerar o construtor vazio
-@AllArgsConstructor //gerar o construtor com todos os atributos
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Medico {
 
@@ -26,7 +26,6 @@ public class Medico {
     @Embedded
     private Endereco endereco;
     private Boolean ativo;
-    //caso a migration de erro https://cursos.alura.com.br/course/spring-boot-3-desenvolva-api-rest-java/task/121056
 
     public Medico(DadosCadastroMedico dados) {
         this.ativo = true;

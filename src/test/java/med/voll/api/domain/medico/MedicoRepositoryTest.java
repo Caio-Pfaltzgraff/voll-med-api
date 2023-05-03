@@ -19,21 +19,21 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.TemporalAdjusters;
 
-@DataJpaTest //utilizada para testar uma interface repository, uma camada da JPA
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) //para usar a config do meu banco de dados, e não de um banco para tests
-@ActiveProfiles("test") //quando rodar o test irá carregar o application-test.props
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@ActiveProfiles("test")
 class MedicoRepositoryTest {
 
     @Autowired
     private MedicoRepository medicoRepository;
 
     @Autowired
-    private TestEntityManager em; //para preencher o medico,paciente e consulta sem usar os repositorys de cada
+    private TestEntityManager em;
 
     @Test
-    @DisplayName("Deveria devolver null quando unico medico cadastrado nao esta disponivel na data") //diz o que o método está testando
+    @DisplayName("Deveria devolver null quando unico medico cadastrado nao esta disponivel na data")
     void escolherMedicoAleatorioLivreNaDataCenario1() {
-        //given ou arrange | cadastra as info
+        //given ou arrange
         var proximaSegundaAs10 = LocalDate.now()
                 .with(TemporalAdjusters.next(DayOfWeek.MONDAY))
                 .atTime(10, 0);
@@ -42,10 +42,10 @@ class MedicoRepositoryTest {
         var paciente = cadastrarPaciente("Paciente", "paciente@email.com","00000000000");
         cadastrarConsulta(medico, paciente, proximaSegundaAs10);
 
-        //when ou act | executa a ação que deseja testar
+        //when ou act
         var medicoLivre = medicoRepository.escolherMedicoAleatorioLivreNaData(Especialidade.CARDIOLOGIA, proximaSegundaAs10);
 
-        //then ou assert | verifica se está com resultado esperado
+        //then ou assert
         assertThat(medicoLivre).isNull();
     }
 

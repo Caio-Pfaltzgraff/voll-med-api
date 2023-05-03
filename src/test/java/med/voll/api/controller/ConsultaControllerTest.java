@@ -25,26 +25,26 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
-@SpringBootTest //para testar a classe conrtoller
-@AutoConfigureMockMvc //para conseguir injetar o MockMvc
-@AutoConfigureJsonTesters //para o spring conseguir inetar o JacksonTester
+@SpringBootTest
+@AutoConfigureMockMvc
+@AutoConfigureJsonTesters
 class ConsultaControllerTest {
 
     @Autowired
-    private MockMvc mvc; //simula requisições usando o padrão MVC, para o status 400
+    private MockMvc mvc; //simula requisições
 
     @Autowired
-    private JacksonTester<DadosAgendamentoConsulta> dadosAgendamentoConsultaJson; //objeto para converter para json, para o status 200
+    private JacksonTester<DadosAgendamentoConsulta> dadosAgendamentoConsultaJson; //objeto para converter para json
 
     @Autowired
-    private JacksonTester<DadosDetalhamentoConsulta> dadosDetalhamentoConsultaJson; //objeto para devolver o json, para o status 200
+    private JacksonTester<DadosDetalhamentoConsulta> dadosDetalhamentoConsultaJson; //objeto para devolver o json
 
-    @MockBean //faça um mock dele, não injete uma agenda de consultas de verdade
+    @MockBean
     private AgendaDeConsultas agendaDeConsultas;
 
     @Test
     @DisplayName("Deveria devolver codigo http 400 quando informacoes estao invalidas")
-    @WithMockUser //para mandar um usuario Mockado, dizendo que está "logado", ou seja, ignora o spring security
+    @WithMockUser
     void agendar_cenario1() throws Exception {
          var response = mvc.perform(post("/consultas"))
                 .andReturn().getResponse();

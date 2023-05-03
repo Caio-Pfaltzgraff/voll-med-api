@@ -8,10 +8,10 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@RestControllerAdvice //para indicar que a classe é para tratamento de erros
+@RestControllerAdvice
 public class TratadorDeErros {
 
-    @ExceptionHandler(EntityNotFoundException.class) //para qual Exception este método vai ser chamado
+    @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity tratarError404() {
         return ResponseEntity.notFound().build();
     }

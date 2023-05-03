@@ -24,13 +24,13 @@ public class AgendaDeConsultas {
     private PacienteRepository pacienteRepository;
 
     @Autowired
-    private List<ValidadorAgendamentoDeConsulta> validadores; //spring automáticamente pega todas as classes de validação que implementa esta interface
+    private List<ValidadorAgendamentoDeConsulta> validadores;
 
     @Autowired
     private List<ValidadorCancelamentoDeConsulta> validadoresCancelamento;
 
     public DadosDetalhamentoConsulta agendar(DadosAgendamentoConsulta dados) {
-        //regras de negócios
+
         if (!pacienteRepository.existsById(dados.idPaciente())){
             throw new ValidacaoException("Id do paciente informado não existe!");
         }
