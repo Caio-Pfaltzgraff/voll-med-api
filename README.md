@@ -3,7 +3,7 @@
 Voll.med é uma clínica médica fictícia que precisa de um aplicativo para gestão de consultas.
 A API Rest possui funcionalidades que permitem o cadastro de médicos e de pacientes, e também o agendamento e cancelamento de consultas.
 
-Desenvolvido apenas o Back-end.
+Desenvolvido no ambiente Back-end.
 
 ---
 
